@@ -3,7 +3,7 @@ import 'dotenv/config'
 import dbconection from '../database/config.js';
 import {getVehicle, postVehicle, putVehicle, deleteVehicle} from '../controllers/vehicleControllers.js';
 import { getOwner, postOwner, putOwner, deleteOwner } from '../controllers/ownerController.js';
-
+import { createUser } from '../controllers/userController.js';
 
 export default class server {
   constructor() {
@@ -12,6 +12,7 @@ export default class server {
     this.dbconect();
     this.pathVehicle = '/api/vehicle';
     this.pathOwner = '/api/owner';
+
     this.route();
   
 }
@@ -34,5 +35,6 @@ route(){
     this.app.post(this.pathOwner,postOwner)
     this.app.put(this.pathOwner,putOwner)
     this.app.delete(this.pathOwner+('/:id'),deleteOwner)
+    this.app.post('/api/user',createUser)
 }
 }
